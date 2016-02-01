@@ -8,7 +8,7 @@ function tryAnswer( answerId){
 
 	var param = {'qid': question_id, answer: answerId};
 	//
-	$.post('http://www.bluefocusmix.com/parts.php', param, function(data) {
+	$.post('http://www._mix.com/parts.php', param, function(data) {
 		times ++;
 		data = $.parseJSON(data);
 		success = data.status;
