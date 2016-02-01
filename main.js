@@ -7,19 +7,6 @@ function tryAnswer( answerId){
 	var question_id = document.getElementById('question_id').value;
 
 	var param = {'qid': question_id, answer: answerId};
-	//
-	$.post('http://www.bluefocusmix.com/parts.php', param, function(data) {
-		times ++;
-		data = $.parseJSON(data);
-		success = data.status;
-		if(!success){
-			tryAnswer(times);
-		} else {
-			//answer();
-			print("answer: " + answerId);
-			times = 0;
-		}
-	});
 
 	jQuery.ajax({		
 		url: 'parts.php?mod=fight5&v=getNextQuestion',
@@ -58,6 +45,8 @@ function tryAnswer( answerId){
 			jQuery('#submit_tip').hide();
 		}
 	});	
+
+}
 
 tryAnswer(0);
 
