@@ -38,7 +38,7 @@ function tryAnswer( answerId){
 					//alert('啊哦，挑战失败了',-1,0);
 					console.log('wrong answer: '+answerId);
 					times ++;
-					if times < 5 {
+					if (times < 5) {
 						tryAnswer(times);
 					}
 				}else{
