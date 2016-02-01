@@ -30,19 +30,18 @@ function tryAnswer( answerId){
 					}
 					showAwardDialog(response.message,response.category_id,error_state);
 				}else if(response.msg=='answer_false'){
-					showAwardDialog('啊哦，挑战失败了',-1,0);
+					alert('啊哦，挑战失败了',-1,0);
 				}else{
-					showAwardDialog('好像出了一点问题，请稍后再试。',-1,0);
+					alert('好像出了一点问题，请稍后再试。',-1,0);
 				}
 			}else{
-				showAwardDialog('好像出了一点问题，请稍后再试。',-1,0);
+				alert('好像出了一点问题，请稍后再试。',-1,0);
 			}
 			jQuery('#submit_tip').hide();
 		},
 		error:function(){
 			alert('网络请求超时，请刷新重试');
 			answer_end_sign = true;
-			jQuery('#submit_tip').hide();
 		}
 	});	
 
