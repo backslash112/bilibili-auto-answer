@@ -2,6 +2,8 @@ var map = {};
 var result = {};
 var times = 0;
 
+var questions = [];
+var answers = [];
 start();
 
 function writeToFile(d1, d2){
@@ -62,8 +64,9 @@ function tryAnswer(question_id, answerId){
 				if(response.msg=='next_question'){
 					console.log(question_id + 'right answer: ' + user_answer);
 					var question_content = document.getElementById('question_content').value; 
-					
-					map[question_content] = user_answer;
+					questions[question_id] = question_content;
+					answers[question_id] = user_answer;
+					// map[question_content] = user_answer;
 					//writeToFile(question_id, user_answer);
 					times = 0;
 					// new question
@@ -81,8 +84,16 @@ function tryAnswer(question_id, answerId){
 					alert(response.message,response.category_id,error_state);
 				}else if(response.msg=='answer_false'){
 					//alert('啊哦，挑战失败了',-1,0);
+
 					console.log('wrong answer: '+answerId);
-					console.log(map);
+
+					var question_content = document.getElementById('question_content').value; 
+					questions[question_id] = question_content;
+					answers[question_id] = user_answer+1;
+
+
+					console.log(questions);
+					console.log(answers);
 					times ++;
 					if (times < 2) {
 						tryAnswer(question_id, times);
