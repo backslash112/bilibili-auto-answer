@@ -6,10 +6,10 @@ start();
 
 function writeToFile(d1, d2){
 	// only works in IE.
-	var fso = new ActiveXObject("Scripting.FileSystemObject");
-	var fh = fso.OpenTextFile("data.txt", 8, false, 0);
-	fh.WriteLine(d1 + ',' + d2);
-	fh.Close();
+	//var fso = new ActiveXObject("Scripting.FileSystemObject");
+	//var fh = fso.OpenTextFile("data.txt", 8, false, 0);
+	//fh.WriteLine(d1 + ',' + d2);
+	//fh.Close();
 }
 
 function readFile(){
@@ -60,7 +60,8 @@ function tryAnswer(question_id, answerId){
 			answer_end_sign = true;
 			if(response.error=='1'){
 				if(response.msg=='next_question'){
-					console.log('right answer: ' + user_answer);
+					console.log(question_id + 'right answer: ' + user_answer);
+					map[question_id] = user_answer;
 					//writeToFile(question_id, user_answer);
 					times = 0;
 					// new question
@@ -79,6 +80,7 @@ function tryAnswer(question_id, answerId){
 				}else if(response.msg=='answer_false'){
 					//alert('啊哦，挑战失败了',-1,0);
 					console.log('wrong answer: '+answerId);
+					console.log(map);
 					times ++;
 					if (times < 2) {
 						tryAnswer(question_id, times);
