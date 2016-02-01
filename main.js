@@ -24,8 +24,11 @@ function tryAnswer( answerId){
 			if(response.error=='1'){
 				if(response.msg=='next_question'){
 					console.log('right answer: ' + user_answer);
+					times = 0;
 					//initQuestion(response.question_demo,init_data.category_time_limit);
 				}else if(response.msg=='last_question'){
+					console.log('right answer: ' + user_answer);
+					times = 0;
 					var error_state = 1;
 					if( response.category_id == 4){
 						error_state = 0;
@@ -35,7 +38,9 @@ function tryAnswer( answerId){
 					//alert('啊哦，挑战失败了',-1,0);
 					console.log('wrong answer: '+answerId);
 					times ++;
-					tryAnswer(times);
+					if times < 5 {
+						tryAnswer(times);
+					}
 				}else{
 					alert('好像出了一点问题，请稍后再试。',-1,0);
 				}
