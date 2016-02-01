@@ -5,6 +5,7 @@ var times = 0;
 start();
 
 function writeToFile(d1, d2){
+	// only works in IE.
 	var fso = new ActiveXObject("Scripting.FileSystemObject");
 	var fh = fso.OpenTextFile("data.txt", 8, false, 0);
 	fh.WriteLine(d1 + ',' + d2);
@@ -12,6 +13,7 @@ function writeToFile(d1, d2){
 }
 
 function readFile(){
+	// only works in IE.
 	var fso = new ActiveXObject("Scripting.FileSystemObject");
 	var fh = fso.OpenTextFile("data.txt", 1, false, 0);
 	var lines = "";
