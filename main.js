@@ -101,6 +101,8 @@ function tryAnswer(question_id, answerId){
 function start() {
 	var question_id = document.getElementById('question_id').value; 
 	var savedAnswer = getAnswerFromDataByQuestionId(question_id);
+	tryAnswer(question_id, times);
+	return
 	if (savedAnswer > 99) {
 		alert('saved answer: ' + savedAnswer);
 	} else {
