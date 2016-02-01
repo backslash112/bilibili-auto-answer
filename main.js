@@ -61,7 +61,7 @@ function tryAnswer(question_id, answerId){
 			if(response.error=='1'){
 				if(response.msg=='next_question'){
 					console.log('right answer: ' + user_answer);
-					writeToFile(question_id, user_answer);
+					//writeToFile(question_id, user_answer);
 					times = 0;
 					// new question
 					initQuestion(response.question_demo,init_data.category_time_limit);
@@ -69,7 +69,7 @@ function tryAnswer(question_id, answerId){
 
 				}else if(response.msg=='last_question'){
 					console.log('right answer: ' + user_answer);
-					writeToFile(question_id, user_answer);
+					//writeToFile(question_id, user_answer);
 					times = 0;
 					var error_state = 1;
 					if( response.category_id == 4){
