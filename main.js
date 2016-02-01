@@ -61,7 +61,9 @@ function tryAnswer(question_id, answerId){
 			if(response.error=='1'){
 				if(response.msg=='next_question'){
 					console.log(question_id + 'right answer: ' + user_answer);
-					map[question_id] = user_answer;
+					var question_content = document.getElementById('question_content').value; 
+					
+					map[question_content] = user_answer;
 					//writeToFile(question_id, user_answer);
 					times = 0;
 					// new question
