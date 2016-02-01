@@ -2,10 +2,45 @@ var map = {};
 var result = {};
 var times = 0;
 
+start();
 
-function tryAnswer( answerId){
+function writeToFile(d1, d2){
+	var fso = new ActiveXObject("Scripting.FileSystemObject");
+	var fh = fso.OpenTextFile("data.txt", 8, false, 0);
+	fh.WriteLine(d1 + ',' + d2);
+	fh.Close();
+}
+
+function readFile(){
+	var fso = new ActiveXObject("Scripting.FileSystemObject");
+	var fh = fso.OpenTextFile("data.txt", 1, false, 0);
+	var lines = "";
+	while (!fh.AtEndOfStream) {
+		lines += fh.ReadLine() + "\r";
+	}
+	fh.Close();
+	return lines;
+}
+
+function getAnswerFromDataByQuestionId(question_id) {
+	var text = readFile();
+	var lines = text.split("\r");
+	lines.pop();
+	var result;
+	for (var i = 0; i < lines.length; i++) {
+		if (lines[i].match(new RegExp(input))) {
+			result = lines[i].split(",")[1];
+		}
+	}
+	if (result) { 
+		return result
+	} else {
+		return 99
+	}
+}
+
+function tryAnswer(question_id, answerId){
 	console.log('current answer: '+answerId);
-	var question_id = document.getElementById('question_id').value;
 
 	var param = {'qid': question_id, answer: answerId};
 	var user_answer = times;
@@ -24,10 +59,15 @@ function tryAnswer( answerId){
 			if(response.error=='1'){
 				if(response.msg=='next_question'){
 					console.log('right answer: ' + user_answer);
+					writeToFile(question_id, user_answer);
 					times = 0;
-					//initQuestion(response.question_demo,init_data.category_time_limit);
+					// new question
+					initQuestion(response.question_demo,init_data.category_time_limit);
+					setTimeout(start, 3000);
+
 				}else if(response.msg=='last_question'){
 					console.log('right answer: ' + user_answer);
+					writeToFile(question_id, user_answer);
 					times = 0;
 					var error_state = 1;
 					if( response.category_id == 4){
@@ -39,7 +79,7 @@ function tryAnswer( answerId){
 					console.log('wrong answer: '+answerId);
 					times ++;
 					if (times < 5) {
-						tryAnswer(times);
+						tryAnswer(question_id, times);
 					}
 				}else{
 					alert('好像出了一点问题，请稍后再试。',-1,0);
@@ -54,10 +94,17 @@ function tryAnswer( answerId){
 			answer_end_sign = true;
 		}
 	});	
-
 }
 
-tryAnswer(0);
+function start() {
+	var question_id = document.getElementById('question_id').value; 
+	var savedAnswer = getAnswerFromDataByQuestionId(question_id);
+	if (savedAnswer > 99) {
+		alert('saved answer: ' + savedAnswer);
+	} else {
+		tryAnswer(question_id, 0);
+	}
+}
 
 
 
