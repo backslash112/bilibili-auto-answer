@@ -4,7 +4,7 @@ var times = 0;
 
 
 function tryAnswer( answerId){
-	print('current answer: '+answerId);
+	console.log('current answer: '+answerId);
 	var question_id = document.getElementById('question_id').value;
 
 	var param = {'qid': question_id, answer: answerId};
@@ -23,6 +23,7 @@ function tryAnswer( answerId){
 			answer_end_sign = true;
 			if(response.error=='1'){
 				if(response.msg=='next_question'){
+					console.log('right answer: ' + user_answer);
 					//initQuestion(response.question_demo,init_data.category_time_limit);
 				}else if(response.msg=='last_question'){
 					var error_state = 1;
@@ -32,7 +33,7 @@ function tryAnswer( answerId){
 					alert(response.message,response.category_id,error_state);
 				}else if(response.msg=='answer_false'){
 					//alert('啊哦，挑战失败了',-1,0);
-					print('wrong anwer: '+answerId);
+					console.log('wrong answer: '+answerId);
 					times ++;
 					tryAnswer(times);
 				}else{
