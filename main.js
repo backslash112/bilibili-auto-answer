@@ -80,7 +80,7 @@ function tryAnswer(question_id, answerId){
 					//alert('啊哦，挑战失败了',-1,0);
 					console.log('wrong answer: '+answerId);
 					times ++;
-					if (times < 5) {
+					if (times < 2) {
 						tryAnswer(question_id, times);
 					}
 				}else{
