@@ -7,7 +7,7 @@ function tryAnswer( answerId){
 	var question_id = document.getElementById('question_id').value;
 
 	var param = {'qid': question_id, answer: answerId};
-
+	var user_answer = times;
 	jQuery.ajax({		
 		url: 'parts.php?mod=fight5&v=getNextQuestion',
 		async:true,
