@@ -7,5 +7,6 @@ Bilibili自动答题脚本 弹幕礼仪部分。
 
 不建议使用:
 *将下面加入到书签中去，然后在答题页面点击这个书签：*
-*`javascript: $("<script>").attr("src","https://rawgit.com/lhcpig/bilibili-auto-answer/master/main.js").appendTo("head");`*
+
+*`javascript:  var filename = "https://rawgit.com/backslash112/bilibili-auto-answer/master/main.js"; var fileref=document.createElement('script');    fileref.setAttribute("type","text/javascript");    fileref.setAttribute("src", filename);  document.getElementsByTagName("head")[0].appendChild(fileref);`*
 

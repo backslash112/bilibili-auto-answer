@@ -62,7 +62,7 @@ function tryAnswer(question_id, answerId){
 			answer_end_sign = true;
 			if(response.error=='1'){
 				if(response.msg=='next_question'){
-					console.log(question_id + 'right answer: ' + user_answer);
+					console.log(question_id + ' right answer: ' + user_answer);
 					var question_content = document.getElementById('question_content').value; 
 					questions[question_id] = question_content;
 					answers[question_id] = user_answer;
